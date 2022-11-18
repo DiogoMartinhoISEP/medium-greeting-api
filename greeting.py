@@ -47,13 +47,13 @@ def post_something():
 def foo():
     content = request.get_json()
     response = {}
-    response["nome"]=content["name"]
+    response["nome"]=content['name']
     jsonify(response)
 
 @app.route('/')
 def index():
     # A welcome message to test our server
-    return "<h1>Welcome to our medium-greeting-api! NE2W</h1>"
+    return "<h1>Welcome to our medium-greeting-api! NE22W</h1>"
 
 
 if __name__ == '__main__':
