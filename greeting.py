@@ -48,7 +48,7 @@ def foo():
     content = request.get_json()
     response = {}
     response["nome"]=content['name']
-    jsonify(response)
+    return jsonify(response)
 
 @app.route('/')
 def index():
