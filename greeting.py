@@ -3,6 +3,10 @@ app = Flask(__name__)
 
 from helpers import bar
 
+import numpy as np
+import sys
+import ast
+
 
 
 @app.route('/getmsg/', methods=['GET'])
@@ -162,6 +166,18 @@ def getMessage():
         listSteps.append(steps)
 
     #print("Most efficient path:")
+    
+    
+    
+   
+    counter = 0
+    num = listSteps[0]
+
+    for i in listSteps:
+        curr_frequency = listSteps.count(i)
+        if (curr_frequency > counter):
+            counter = curr_frequency
+            num = i   
     return(helpers.most_frequent(listSteps))
 
   
