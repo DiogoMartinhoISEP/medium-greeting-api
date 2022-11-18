@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
-import numpy as np
-import sys
-import ast
+import helpers
 
 
 
@@ -124,7 +122,7 @@ def getMessage():
     gamma = 0.8
 
     initial_state = 1
-    update(initial_state, action, gamma)
+    helpers.update(initial_state, action, gamma)
 
 
 
@@ -134,9 +132,9 @@ def getMessage():
     for j in range(nR):
         for i in range(700):
             current_state = np.random.randint(0, int(Q.shape[0]))
-            available_act = available_actions(current_state)
-            action = sample_next_action(available_act)
-            score = update(current_state, action, gamma)
+            available_act = helpers.available_actions(current_state)
+            action = helpers.sample_next_action(available_act)
+            score = helpers.update(current_state, action, gamma)
             scores.append(score)
             # print('Score:', str(score))
 
@@ -164,7 +162,7 @@ def getMessage():
         listSteps.append(steps)
 
     #print("Most efficient path:")
-    return(most_frequent(listSteps))
+    return(helpers.most_frequent(listSteps))
 
   
 
