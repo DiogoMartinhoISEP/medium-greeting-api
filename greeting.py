@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
-from helpers import most_frequent, available_actions, sample_next_action, update
+from helpers import bar
 
 
 
@@ -51,7 +51,7 @@ def foo():
     content = request.get_json()
     response = {}
     response["nome"]=content['name']
-    result = test(response)
+    result = bar(response)
     return jsonify(result)
     
 @app.route('/getMessage', methods=['POST'])
