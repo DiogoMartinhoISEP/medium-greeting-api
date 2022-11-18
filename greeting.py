@@ -55,7 +55,7 @@ def foo():
     response["nome"]=content['name']
     return jsonify(response)
     
-@app.route('/getMessage', methods = ['POST'])
+@app.route('/getMessage', methods=['POST'])
 def getMessage():
 
     content = request.get_json()
