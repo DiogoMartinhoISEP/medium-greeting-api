@@ -46,7 +46,9 @@ def post_something():
 @app.route('/foo', methods=['POST']) 
 def foo():
     data = request.json
-    return jsonify(data)
+    response = {}
+    respose["nome"]=data.name;
+    jsonify(response)
 
 @app.route('/')
 def index():
