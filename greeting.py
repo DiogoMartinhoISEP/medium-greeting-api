@@ -143,8 +143,13 @@ def getMessage():
     for j in range(nR):
         for i in range(700):
             current_state = np.random.randint(0, int(Q.shape[0]))
-            available_act = helpers.available_actions(current_state)
-            action = helpers.sample_next_action(available_act)
+           
+            current_state_row_new = R[current_state,]
+            av_act_new = np.where(current_state_row_new >= 0)[1]
+            
+            available_act_new = av_act_new
+            next_action_new = int(np.random.choice(available_act_new, 1))
+            action = next_action_new
             
             max_index = np.where(Q[action,] == np.max(Q[action,]))[1]
 
