@@ -206,7 +206,7 @@ def getMessage():
         if (curr_frequency > counter):
             counter = curr_frequency
             num = i   
-    return(helpers.most_frequent(listSteps))
+    return(num)
 
   
 
