@@ -126,7 +126,14 @@ def getMessage():
     gamma = 0.8
 
     initial_state = 1
-    helpers.update(initial_state, action, gamma)
+    
+    current_state_row = R[initial_state,]
+    av_act = np.where(current_state_row >= 0)[1]
+    available_act = av_act
+
+    next_action = int(np.random.choice(available_act, 1))    
+    action = next_action
+   
 
 
 
@@ -138,7 +145,23 @@ def getMessage():
             current_state = np.random.randint(0, int(Q.shape[0]))
             available_act = helpers.available_actions(current_state)
             action = helpers.sample_next_action(available_act)
-            score = helpers.update(current_state, action, gamma)
+            
+            max_index = np.where(Q[action,] == np.max(Q[action,]))[1]
+
+            if max_index.shape[0] > 1:
+                max_index = int(np.random.choice(max_index, size=1))
+            else:
+                max_index = int(max_index)
+            max_value = Q[action, max_index]
+
+            Q[current_state, action] = R[current_state, action] + gamma * max_value
+            #   print('max_value', R[current_state, action] + gamma * max_value)
+
+            if (np.max(Q) > 0):
+                score = np.sum(Q / np.max(Q) * 100)
+            else:
+                score = 0
+            
             scores.append(score)
             # print('Score:', str(score))
 
