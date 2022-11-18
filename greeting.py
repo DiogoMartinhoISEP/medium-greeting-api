@@ -45,9 +45,9 @@ def post_something():
 
 @app.route('/foo', methods=['POST']) 
 def foo():
-    data = request.json
+    content = request.get_json()
     response = {}
-    respose["nome"]=data["name"];
+    response["nome"]=content["name"];
     jsonify(response)
 
 @app.route('/')
